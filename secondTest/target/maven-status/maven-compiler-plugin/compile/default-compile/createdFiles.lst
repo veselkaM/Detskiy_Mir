@@ -1,0 +1,7 @@
+TestProperties.class
+pages\HalperBase.class
+pages\GamesAndToysPage.class
+pages\GamesSelectionPage.class
+models\ContactData.class
+pages\NavigationHelper.class
+pages\OrderRegistrationPage.class
