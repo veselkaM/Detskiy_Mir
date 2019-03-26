@@ -20,9 +20,8 @@ public class OrderRegistrationPage extends HalperBase {
     @FindBy(xpath = ".//*[@class='_3qhIrLB _2Tx0waf _3gdejw3']")
     WebElement addedItem;
 
-    @FindBy(xpath = ".//*[@class='_2kAHxCq' and text() = 'Продолжить']")
+    @FindBy(xpath = ".//*[@class='DzZjJvP _1GNeiil _3RWjCYc _1Wz72VL _30X88OH']")
     WebElement runOnButtom;
-
 
     @FindBy(xpath = ".//div[@class='sKrTveh']")
     public
@@ -49,10 +48,12 @@ public class OrderRegistrationPage extends HalperBase {
     @FindBy(xpath = ".//*[@class='_3IstczW']")
     WebElement subscribeToTheNews;
 
-
     @FindBy(xpath = ".//*[@class='_2kAHxCq' and text() = 'Подтвердить']")
     WebElement confirmButtom;
 
+    @FindBy(xpath = ".//*[@class='aewiiFT _3JkTsQC']")
+    public
+    List<WebElement> checkMark;
 
 
     public void goToCart() {

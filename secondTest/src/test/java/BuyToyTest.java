@@ -1,6 +1,9 @@
 import models.ContactData;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
+
 public class BuyToyTest extends BaseTest {
 
 
@@ -14,7 +17,7 @@ public class BuyToyTest extends BaseTest {
         iggryIgrushki.selectItem("Вертолеты, самолеты, Космическая техника, катера, корабли");
         //проверяем, что перешли на желаемую страницу
         selection.checkHeadlineName("Вертолеты, самолеты, Космическая техника, катера, корабли");
-        //запоминаем выбираем игрушку
+        //выбираем игрушку
         String item = selection.getItemName(1);
         //добавляем игрушку в корзину
         selection.addToCart(item);
@@ -26,41 +29,24 @@ public class BuyToyTest extends BaseTest {
         orderRegistration.chooseDelivery("Забрать");
         //выбираем первый встречный магаз
         orderRegistration.selectStore(0);
+        //выбираем бесплатный вариант
         orderRegistration.choosePriceOfDelivery("Бесплатно");
+        //идём дальше
         orderRegistration.runOn();
+        //выбираем способ оплаты
         orderRegistration.payInStore();
+        //переходим к заполнению кантактных данных
         orderRegistration.goToContacts();
+        //заполняем
         orderRegistration.fillContactInfo(new ContactData("Имя", "9155634156", "qwwer@mail.ru",
                 "коммент"), true);
-        orderRegistration.checkContactForm("Имя", "+79155634156", "qwwer@mail.ru","коммент");
+        //проверяем, что контакты ввели правильно
+        orderRegistration.checkContactForm("Имя", "+7 915 563-41-56", "qwwer@mail.ru", "коммент");
+        //подтверждаем
         orderRegistration.confirm();
-
-
-
-        /*
-        //6. На вкладке – Выбор полиса  выбрать сумму страховой защиты – Минимальная
-        insuranceSelection.chooseMinimalPackage();
-        //7. Нажать Оформить
-        insuranceSelection.clickCheckoutButton();
-
-        //8.  На вкладке Оформить заполнить Фамилию и Имя, Дату рождения застрахованных
-        ContactData insuredData = new ContactData("INSUREDSURNAME", "INSUREDNAME",  "22.07.1992",
-                "ФАМИЛИЯ", "ИМЯ", "ОТЧЕСТВО", "22.07.1991", "4444", "444444",
-                "20.06.2016", "ОВД ГОЛЬЯНОВО", null, null, null);
-        insuranceRegistration.fillAddInsuranceForm(insuredData, true);
-
-        //9. Проверить, что все поля заполнены правильно
-        insuranceRegistration.checkInsuranceForm ("INSUREDSURNAME", "INSUREDNAME",  "22.07.1992",
-                "ФАМИЛИЯ", "ИМЯ", "ОТЧЕСТВО", "22.07.1991", "4444", "444444",
-                "20.06.2016", "ОВД ГОЛЬЯНОВО");
-
-        //10. Нажать продолжить
-        insuranceRegistration.conformInsuranceForm();
-        //11. Проверить, что появилось сообщение - Заполнены не все обязательные поля
-        insuranceRegistration.checkErrorMassage("Заполнены не все обязательные поля");
-*/
+        //проверяем, что по всем трём пунктам оформления заказа проставилась галочка
+        assertEquals(3, orderRegistration.checkMark.size());
     }
-
 
 
 }

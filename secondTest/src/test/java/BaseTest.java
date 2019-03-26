@@ -1,15 +1,18 @@
+import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pages.*;
+import pages.GamesAndToysPage;
+import pages.GamesSelectionPage;
+import pages.NavigationHelper;
+import pages.OrderRegistrationPage;
 
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 
-public class BaseTest  {
+public class BaseTest {
     protected NavigationHelper navigation;
     protected GamesAndToysPage iggryIgrushki;
     protected GamesSelectionPage selection;
@@ -22,7 +25,7 @@ public class BaseTest  {
 
     @Before
     public void setUp() {
-        switch (properties.getProperty("browser")){
+        switch (properties.getProperty("browser")) {
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", properties.getProperty("webdriver.gecko.driver"));
                 driver = new FirefoxDriver();
@@ -51,18 +54,9 @@ public class BaseTest  {
         orderRegistration = new OrderRegistrationPage(driver);
     }
 
- /*   @After
+    @After
     public void tearDown() throws Exception {
         driver.quit();
-    }
-    */
-
-
-    void getNewTab() {
-        String oldTab = driver.getWindowHandle();
-        ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
-        newTab.remove(oldTab);
-        driver.switchTo().window(newTab.get(0));
     }
 
 }

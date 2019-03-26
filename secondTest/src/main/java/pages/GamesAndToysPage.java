@@ -18,10 +18,5 @@ public class GamesAndToysPage extends HalperBase {
     }
 
 
-
-
-
-
-
 }
 

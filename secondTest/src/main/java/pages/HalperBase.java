@@ -1,10 +1,12 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -27,13 +29,6 @@ public class HalperBase {
     }
 
 
-    protected void clickByLocator(By locator) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", driver.findElement(locator));
-        Wait<WebDriver> wait = new WebDriverWait(driver, 10, 1000);
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
-
-    }
-
     protected void type(WebElement element, String text) {
         if (text != null) {
             String existingTest = element.getAttribute("value");
@@ -42,11 +37,6 @@ public class HalperBase {
                 element.sendKeys(text);
             }
         }
-    }
-
-    protected void fillField(WebElement element, String value) {
-        element.clear();
-        element.sendKeys(value);
     }
 
     protected void checkFieldText(WebElement element, String text) {
@@ -63,16 +53,6 @@ public class HalperBase {
             expectedText = driver.findElement(locator).getAttribute("value");
         }
         Assert.assertEquals(expectedText, text);
-    }
-
-
-    protected boolean isElementPresent(By locator) {
-        try {
-            driver.findElement(locator);
-            return true;
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
     }
 
     public boolean isElementPresent(WebElement element) {
